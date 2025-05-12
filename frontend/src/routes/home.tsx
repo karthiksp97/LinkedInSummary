@@ -40,25 +40,33 @@ function SearchPage() {
         }
 
         // If validation passes, log the URL
-        console.log('Searching LinkedIn profile:', trimmedURL)
+        const url = import.meta.env.VITE_API_URL;
+
+        // console.log(url)
+        // console.log('Searching LinkedIn profile:', trimmedURL)
 
         // Reset error if validation passes
         setError('')
 
-        //       try {
-        //     const response = await axios.post('/api/linkedin-profile', {
-        //       url: trimmedURL,
-        //     })
 
-        //     console.log('API response:', response.data)
+        const search = async()=>{
 
-        //     // Handle response data (e.g., show profile info on the UI)
-        //   } catch (err: any) {
-        //     console.error('Axios error:', err)
-        //     setError(
-        //       err.response?.data?.message || 'Failed to fetch profile data'
-        //     )
-        //   }
+            try {
+                const response = await axios.get(`${url}/`)
+    
+                console.log('API response:', response.data)
+    
+                // Handle response data (e.g., show profile info on the UI)
+              } catch (err: any) {
+                console.error('Axios error:', err)
+                setError(
+                  err.response?.data?.message || 'Failed to fetch profile data'
+                )
+              }
+
+        }
+
+        search()
     }
 
     return (

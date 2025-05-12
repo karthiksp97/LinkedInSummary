@@ -122,3 +122,13 @@ def recover_password_html_content(email: str, session: SessionDep) -> Any:
     return HTMLResponse(
         content=email_data.html_content, headers={"subject:": email_data.subject}
     )
+
+
+@router.get("/search")
+def test_token(params:str) -> Any:
+    """
+    Test access token
+    """
+    
+    print(params)
+    return {"current_user":"ss"}
